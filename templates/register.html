@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    
+</head>
+<body>
+    <h2 align="center">Sign Up Here</h2>
+    <form action="reg" method="post">
+        <table align="center">
+            <tr>
+                <td>UserName:</td>
+                <td><input type="text" name="txtName"></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="txtPassword"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" name="txtEmail"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="center"><input type="submit" name="btnSub" value="Sign Up"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="center"><a href="{% url 'login' %}">Already Have Account</a></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
