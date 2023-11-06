@@ -1,26 +1,53 @@
 {% extends 'adminnavbar.html' %}
 
 {% block content %}
-      
-<h2 align="center">Add Course</h2>
+ <style>
+    .div1{
+        width: 40%;
+    }
+    .button{
+        text-align: center;
+    }
+    .tb1{
+        padding: 50px;
+    }
+    .btn1{
+        width: 200%;
+
+    }
+    .div2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .label1{
+        font-family: "Times New Roman";
+    }
+    .heading {
+        font-family: "Times New Roman", Times, serif;
+        font-weight: bold;
+    }
+ </style>     
+<br><h2 align="center" class="heading">Add Course</h2>
 <form action="add_course" method="post">
     {% csrf_token %}
-    <h3 align="center" style="color:green;">{{ Msg }}</h3>
-    <div>
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="coursename" placeholder="CourseName" name="txtCourseName">
-            <label for="coursename">Course Name:</label>
+    <h3 align="center" style="color:green;">{{ Msg }}</h3><br>
+    <div class="d-flex flex-column div2">
+        <div class="form-floating mb-3 div1">
+            <input type="text" class="form-control label1" id="coursename" placeholder="CourseName" name="txtCourseName">
+            <label for="coursename" class="label1">Course Name:</label>
         </div>
-        <div class="form-floating mb-3">    
-            <input type="text" class="form-control" id="courseduration" placeholder="CourseDuration" name="txtCourseDuration">
-            <label for="courseduration">Course Duration:</label>
+        <div class="form-floating mb-3 div1">    
+            <input type="text" class="form-control label1" id="courseduration" placeholder="CourseDuration" name="txtCourseDuration">
+            <label for="courseduration" class="label1">Course Duration:</label>
         </div>
-        <div class="form-floating mb-3">    
-            <input type="number" class="form-control" id="coursefees" placeholder="CourseFees" name="txtCourseFees">
-            <label for="coursefees">Course Fees:</label>
+        <div class="form-floating mb-3 div1">    
+            <input type="number" class="form-control label1" id="coursefees" placeholder="CourseFees" name="txtCourseFees">
+            <label for="coursefees" class="label1">Course Fees:</label>
         </div>
-        <div>    
-            <input type="submit" name="btnSub" value="Add Course">
+        <div class="button d-grid gap-2 col-3 mx-auto">    
+            <input type="submit" class="btn btn-outline-dark label1" name="btnSub" value="Add Course">
         </div>
     </div>    
 </form>
