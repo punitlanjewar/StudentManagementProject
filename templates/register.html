@@ -14,7 +14,7 @@
         .div1
         {
             display: flex;
-            background-color: antiquewhite;
+            background-color: rgb(100, 129, 192);
             justify-content: center;    
             align-items: center;
             height: 100vh;
@@ -26,7 +26,7 @@
         }
         .div3
         {
-            background-color: rgb(100, 129, 192);
+            background-color: antiquewhite;
             display: flex;
             justify-content: center; 
             align-items: center;  
@@ -66,7 +66,14 @@
             <div class="col-sm-8 div1">
                 <div class="flex-column flexcolumn">
                 <h2 align="center" class="heading">Sign Up Here</h2>
-                <h3 align="center" style="color: red"></h3>
+                {% if messages %}
+                {{ message.tags }}
+                <div class="alert alert-success" role="alert">
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
                 <div class="form-floating mb-3 mt-3">
                 <input type="text" class="form-control" id="username" placeholder="UserName" name="txtName">
                 <label for="username" class="label1">User Name:</label>

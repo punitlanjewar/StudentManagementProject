@@ -32,8 +32,15 @@
 <br><h2 align="center" class="heading">Add Course</h2>
 <form action="add_course" method="post">
     {% csrf_token %}
-    <h3 align="center" style="color:green;">{{ Msg }}</h3><br>
     <div class="d-flex flex-column div2">
+        {% if messages %}
+        {{ message.tags }}
+            <div class="alert alert-success" role="alert">
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+            </div>
+        {% endif %}
         <div class="form-floating mb-3 div1">
             <input type="text" class="form-control label1" id="coursename" placeholder="CourseName" name="txtCourseName">
             <label for="coursename" class="label1">Course Name:</label>

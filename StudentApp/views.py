@@ -2,6 +2,7 @@ from StudentApp.models import City, Course, Student
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
+from django.contrib import messages
 
 # Create your views here.
 def login_fun(request):
@@ -14,7 +15,8 @@ def login_fun(request):
                 request.session['Uname'] = user_name
                 return redirect('home')
         else:      
-            return render(request, 'login.html', {'Msg': 'Username And Password is Incorrect'})
+            messages.error(request, 'Please Check Your Username or Password')
+            return redirect('login')
     else:
         return render(request, 'login.html')    
 
@@ -25,8 +27,9 @@ def register_fun(request):
         user_password = request.POST['txtPassword']
         user_email = request.POST['txtEmail']
         r1 = User.objects.create_superuser(username = user_name, password = user_password, email = user_email)
-        r1.save()
-        return redirect('login')
+        r1.save() 
+        messages.success(request, 'Account Created Successfully')       
+        return redirect('reg')
     else: # this block for hyperlink
         return render(request, 'register.html')
     
@@ -42,7 +45,8 @@ def addcourse_fun(request):
         c1.course_duation = request.POST['txtCourseDuration']
         c1.course_fees = int(request.POST['txtCourseFees'])
         c1.save()
-        return render(request, 'addcourse.html', {'Msg': 'Course Successfully Added'})
+        messages.success(request, 'Course Successfully Added')
+        return render(request, 'addcourse.html',)
     else: # this block for hyperlink
         return render(request, 'addcourse.html')
 

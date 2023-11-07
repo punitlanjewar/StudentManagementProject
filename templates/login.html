@@ -67,7 +67,14 @@
             <div class="col-sm-8 div1">
                 <div class="flex-column flexcolumn">
             <h2 align="center" class="heading">Login Here</h2>
-            <h3 align="center" style="color: red">{{ Msg }}</h3>
+            {% if messages %}
+            {{ message.tags }}
+            <div class="alert alert-danger" role="alert">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
             <div class="form-floating mb-3 mt-3">
                 <input type="text" class="form-control" id="username" placeholder="UserName" name="txtName">
                 <label for="username" class="label1">User Name:</label>
