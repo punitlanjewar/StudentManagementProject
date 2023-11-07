@@ -1,0 +1,32 @@
+{% extends 'adminnavbar.html' %}
+
+{% block content %}
+<style>
+    .table1{
+        width: 70%;
+        border: 2px solid white;
+    }
+</style>
+<br>
+<h2 align="center">Course Data</h2><br>
+    <table align="center" class="table table-dark table-striped table1">
+        <tr>
+            <th>Id</th>
+            <th>Course Name</th>
+            <th>Course Duration</th>
+            <th>Course Fees</th>
+            <th>Update Course</th>
+            <th>Delete Course</th>
+        </tr>
+        {% for i in coursedata %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.course_name }}</td>
+                <td>{{ i.course_duation }}</td>
+                <td>{{ i.course_fees }}</td>
+                <td><a href="{% url 'update' i.id %}">Update</a></td>
+                <td><a href="{% url 'delete' i.id %}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

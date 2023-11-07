@@ -22,10 +22,10 @@
 
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><span class="material-icons">home</span> Home</a></li>
-            <li class="nav-item"><a class="nav-link" href=""><span class="material-icons">person_add</span> Add Student</a></li>
-            <li class="nav-item"><a class="nav-link" href=""><span class="material-icons">group</span> Display Student</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'add_student' %}"><span class="material-icons">person_add</span> Add Student</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'displaystudent' %}"><span class="material-icons">group</span> Display Student</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'add_course' %}"><span class="material-icons">post_add</span> Add Course</a></li>
-            <li class="nav-item"><a class="nav-link" href=""><span class="material-icons">library_books</span> Display Course</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'displaycourse' %}"><span class="material-icons">library_books</span> Display Course</a></li>
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><span class="material-icons">logout</span> Logout</a></li>

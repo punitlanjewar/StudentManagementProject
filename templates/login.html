@@ -10,65 +10,85 @@
         .label1
         {
             margin-left: 5px;
-            margin-top: 5px;
+            font-family: "Times New Roman", Times, serif; 
+        }
+        .label2{
+            font-family: "Times New Roman", Times, serif; 
+        }
+        .heading {
+            font-weight: bold;
         }
         .div1
         {
-            padding-top: 15%;
-            padding-bottom: 191px;
-            margin-left: -8%;
+            display: flex;
             background-color: antiquewhite;
+            justify-content: center;    
+            align-items: center;
+            height: 100vh;
         }
         .div2
         {
-            width: 60%;
-            margin-left: 20%;
-            padding-top: 10px;
+            display: flex;
+            justify-content: center;
         }
         .div3
         {
-            padding-top: 60%;
-            padding-bottom: 284px;
-            margin-left: -12px;
-            margin-right: -173px;
             background-color: rgb(100, 129, 192);
+            display: flex;
+            justify-content: center; 
+            align-items: center;  
+            height: 100vh;         
         }
         .btn1
         {
-            margin-top:10px ;
-            width: 30%;
+            justify-content: center;
+            width: 40%;
+        }
+        .btn2
+        {
+            width: 100%;
+            justify-content: center;
+        }
+        .flexrow{
+            display: flex;
+        }
+        .flexbox{
+            display: flex;
+        }
+        .flexcolumn{
+            width: 55%;
         }
     </style>
 </head>
 <body>
     <form method="post" action="">
         {% csrf_token %}
-    <div class="container text-center">
-        <div class="row">
+    <div class="flexbox label2">
             <div class="col-sm-8 div1">
-            <h2 align="center">Login Here</h2>
-            <h3 align="center" style="color: red"></h3>
-            <div class="form-floating mb-3 mt-3 div2">
-                <input type="text" class="form-control" id="username" placeholder="Email" name="txtName">
-                <label for="username" class="label1">UserName:</label>
+                <div class="flex-column flexcolumn">
+            <h2 align="center" class="heading">Login Here</h2>
+            <h3 align="center" style="color: red">{{ Msg }}</h3>
+            <div class="form-floating mb-3 mt-3">
+                <input type="text" class="form-control" id="username" placeholder="UserName" name="txtName">
+                <label for="username" class="label1">User Name:</label>
             </div>
-            <div class="form-floating mb-3 mt-3 div2">        
+            <div class="form-floating mb-3 mt-3">        
                 <input type="password" class="form-control" id="password" placeholder="Password" name="txtPassword">
                 <label for="password" class="label1">Password:</label>
             </div>    
-            <div>    
+            <div class="div2">    
                 <input type="submit" class="btn btn-outline-dark btn1" name="btnSub" value="Login">
             </div>
-        </div>    
-        <div class="col-sm-4"> 
-            <div class="div3">   
-                <h2>New Here?</h2>
-                <p>Sign Up and Discover Something New</p>    
-                <a href="{% url 'reg' %}"><input type="button" class="btn btn-outline-dark btn1" value="Sign Up"></a>
-            </div>        
         </div>
-    </div>    
-</div>        
+    </div>  
+        <div class="col-sm-4"> 
+            <div class="flex-column div3">   
+                <h2 class="heading">New Here?</h2>
+                <p class="heading">Sign Up and Discover Something New</p>    
+                <a href="{% url 'reg' %}"><input type="button" class="btn btn-outline-dark btn2" value="Sign Up"></a>
+            </div>        
+        </div>        
+    </div>   
         </form>
     </body>
 </html>
