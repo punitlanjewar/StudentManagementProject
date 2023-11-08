@@ -63,7 +63,8 @@ def update_fun(request, id):
         c1.course_duation = request.POST['txtCourseDuration']
         c1.course_fees = int(request.POST['txtCourseFees'])
         c1.save()
-        return render(request, 'updatecourse.html', {'Msg': 'Course Update Successfully'})
+        messages.success(request, 'Course Successfully Updated')
+        return render(request, 'updatecourse.html',)
     else: # block for hyperlink
         return render(request, 'updatecourse.html', {'data': c1})
     
@@ -86,7 +87,8 @@ def addstudent_fun(request):
         c1 = Course.objects.get(course_name=request.POST['selCourse'])
         s1.pending_fees = c1.course_fees - s1.paid_fees
         s1.save()
-        return render(request, 'addstudent.html', {'Msg': 'Student Data Successfully Added'})
+        messages.success(request, 'Student Added Successfully')
+        return render(request, 'addstudent.html')
     else:
         city = City.objects.all()
         course = Course.objects.all()

@@ -34,8 +34,15 @@
 <br><h2 align="center" class="heading">Add Student Data</h2>
 <form action="add_student" method="post">
     {% csrf_token %}
-    <h3 align="center" style="color:green;">{{ Msg }}</h3><br>
     <div class="d-flex flex-column div2 label1">
+        {% if messages %}
+        {{ message.tags }}
+            <div class="alert alert-success div1" role="alert">
+            {% for message in messages %}
+            {{ message }}
+            {% endfor %}
+            </div>
+        {% endif %}
         <div class="form-floating mb-3 div1">
             <input type="text" class="form-control label1" id="studentname" placeholder="StudentName" name="txtStudentName">
             <label for="studentname" class="label1">Student Name:</label>
@@ -67,7 +74,7 @@
             <label for="selcity">Click on SelectCity</label>
         </div>
         <div class="form-floating mb-3 div1">
-            <input type="number" class="form-control label" id="coursefee" placeholder="CourseFee" name="txtCourseFee">
+            <input type="number" disabled class="form-control label" id="coursefee" placeholder="CourseFee" name="txtCourseFee">
             <label for="coursefee" class="label1">Course Fee:</label>
         </div>
         <div class="form-floating mb-3 div1">
@@ -75,7 +82,7 @@
             <label for="paidfee" class="label1">Paid Fee:</label>
         </div>
         <div class="button d-grid gap-2 col-3 mx-auto btn1">    
-            <input type="submit" class="btn btn-outline-dark label1" name="btnSub" value="Add Course">
+            <input type="submit" class="btn btn-outline-dark label1" name="btnSub" value="Add Student">
         </div>
     </div>    
 </form>
