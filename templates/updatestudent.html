@@ -31,8 +31,8 @@
         width: 39vw;
     }
  </style>     
-<br><h2 align="center" class="heading">Add Student Data</h2>
-<form action="add_student" method="post">
+<br><h2 align="center" class="heading">Update Student Data</h2>
+<form method="post">
     {% csrf_token %}
     <div class="d-flex flex-column div2 label1">
         {% if messages %}
@@ -44,20 +44,20 @@
             </div>
         {% endif %}
         <div class="form-floating mb-3 div1">
-            <input type="text" class="form-control label1" id="studentname" placeholder="StudentName" name="txtStudentName">
-            <label for="studentname" class="label1">Student Name:</label>
+            <input type="text" class="form-control label1" value="{{ Student.stud_name }}" id="studentname" placeholder="StudentName" name="txtStudentName">
+            <label for="studentname" class="label1">Update Student Name:</label>
         </div>
         <div class="form-floating mb-3 div1">    
-            <input type="number" class="form-control label1" id="studentcontact" placeholder="StudentContact" name="txtStudentPhone">
-            <label for="studentcontact" class="label1">Student Contact:</label>
+            <input type="number" class="form-control label1" value="{{ Student.stud_phno }}" id="studentcontact" placeholder="StudentContact" name="txtStudentPhone">
+            <label for="studentcontact" class="label1">Update Student Contact:</label>
         </div>
         <div class="form-floating mb-3 div1">    
-            <input type="email" class="form-control label1" id="studentemail" placeholder="StudentEmail" name="txtStudentEmail">
-            <label for="studentemail" class="label1">Student Email:</label>
+            <input type="email" class="form-control label1" value="{{ Student.stud_email }}" id="studentemail" placeholder="StudentEmail" name="txtStudentEmail">
+            <label for="studentemail" class="label1">Update Student Email:</label>
         </div>
         <div class="form-floating">
             <select class="form-select mb-3 sellist" id="selcourse" name="selCourse">
-                <option selected>--Select Course--</option>
+                <option selected>{{ Student.stud_course }}</option>
                 {% for i in CourseData %}
                     <option>{{ i.course_name }}</option>
                 {% endfor %}
@@ -66,23 +66,23 @@
         </div>
         <div class="form-floating">
             <select class="form-select mb-3 sellist" id="selcity" name="selCity">
-                <option selected>--Select City--</option>
+                <option selecte>{{ Student.stud_city }}</option>
                 {% for i in CityData %}
                     <option>{{ i.city_name }}</option>
                 {% endfor %}
             </select>
             <label for="selcity">Click on SelectCity</label>
         </div>
-        <div class="form-floating mb-3 div1">
+        <div class="form-floating mb-3 div1"> 
             <input type="number" disabled class="form-control label" id="coursefee" placeholder="CourseFee" name="txtCourseFee">
-            <label for="coursefee" class="label1">Course Fee:</label>
+            <label for="coursefee" class="label1">Update Course Fee:</label>
         </div>
         <div class="form-floating mb-3 div1">
-            <input type="number" class="form-control label" id="paidfee" placeholder="PaidFee" name="txtPaidFee">
+            <input type="number" class="form-control label" value="{{ Student.paid_fees }}" id="paidfee" placeholder="PaidFee" name="txtPaidFee">
             <label for="paidfee" class="label1">Paid Fee:</label>
         </div>
         <div class="form-floating mb-3 div1">
-            <input type="number" class="form-control label" id="pendingfee" placeholder="PaidFee" name="txtPendingFee">
+            <input type="number" disabled class="form-control label" value="{{ Student.pending_fees }}" id="pendingfee" placeholder="PaidFee" name="txtPendingFee">
             <label for="pendingfee" class="label1">Pending Fee:</label>
         </div>
         <div class="button d-grid gap-2 col-3 mx-auto btn1">    

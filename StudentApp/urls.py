@@ -12,4 +12,6 @@ urlpatterns = [
     path('delete/<int:id>', views.deletecourse_fun, name='delete'), # it will delete the (row) objects
     path('add_student', views.addstudent_fun, name='add_student'), # it will display addstudent pageand read and store into student table
     path('displaystudent', views.displaystudent_fun, name='displaystudent'), 
+    path('update_student/<int:id>', views.updatestudent_fun, name='update_student'),
+    path('delete_student/<int:id>', views.deletestudent_fun, name='delete_student'),
 ]

@@ -26,10 +26,14 @@ def register_fun(request):
         user_name = request.POST['txtName']
         user_password = request.POST['txtPassword']
         user_email = request.POST['txtEmail']
-        r1 = User.objects.create_superuser(username = user_name, password = user_password, email = user_email)
-        r1.save() 
-        messages.success(request, 'Account Created Successfully')       
-        return redirect('reg')
+        if User.objects.filter(username = user_name).exists():
+            messages.error(request, 'Username already taken use different username')
+            return redirect('reg')
+        else:
+            r1 = User.objects.create_superuser(username = user_name, password = user_password, email = user_email)
+            r1.save() 
+            messages.success(request, 'Account Created Successfully')       
+            return redirect('reg')
     else: # this block for hyperlink
         return render(request, 'register.html')
     
@@ -98,3 +102,32 @@ def addstudent_fun(request):
 def displaystudent_fun(request):
     stud_data = Student.objects.all()
     return render(request, 'displaystudent.html', {'StudentData': stud_data})
+
+
+def updatestudent_fun(request, id):
+    s1 = Student.objects.get(id=id)
+    if request.method == 'POST':
+        s1.stud_name = request.POST['txtStudentName']
+        s1.stud_phno = int(request.POST['txtStudentPhone'])
+        s1.stud_email = request.POST['txtStudentEmail']
+        s1.stud_course = Course.objects.get(course_name=request.POST['selCourse'])
+        s1.stud_city = City.objects.get(city_name=request.POST['selCity'])
+        s1.paid_fees = s1.paid_fees + int(request.POST['txtPaidFee'])
+        c1 = Course.objects.get(course_name=request.POST['selCourse'])
+        if s1.pending_fees > 0:
+            s1.pending_fees = c1.course_fees - s1.paid_fees
+        else:
+            s1.pending_fees = 0
+        s1.save()
+        messages.success(request, 'Student Updated Successfully')
+        return redirect('displaystudent')
+    else:
+        city = City.objects.all()
+        course = Course.objects.all()
+        return render(request, 'updatestudent.html', {'Student': s1,'CityData': city, 'CourseData': course})
+    
+
+def deletestudent_fun(request, id):
+    s1 = Student.objects.get(id=id)
+    s1.delete()
+    return redirect('displaystudent')

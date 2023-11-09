@@ -23,6 +23,8 @@
             <th>Total Fees</th>
             <th>Paid Fees</th>
             <th>Pending Fees</th>
+            <th>Update Course</th>
+            <th>Delete Course</th>
         </tr>
         {% for i in StudentData %}
             <tr>
@@ -32,9 +34,11 @@
                 <td>{{ i.stud_email }}</td>
                 <td>{{ i.stud_city }}</td>
                 <td>{{ i.stud_course }}</td>
-                <td></td>
+                <td>{{ i.stud_course.course_fees }}</td>
                 <td>{{ i.paid_fees }}</td>
                 <td>{{ i.pending_fees }}</td>
+                <td><a href="{% url 'update_student' i.id %}">Update</a></td>
+                <td><a href="{% url 'delete_student' i.id %}">Delete</a></td>
             </tr>
         {% endfor %}
     </table>
