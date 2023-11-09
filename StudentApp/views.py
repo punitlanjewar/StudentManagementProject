@@ -1,8 +1,10 @@
 from StudentApp.models import City, Course, Student
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
 
 # Create your views here.
 def login_fun(request):
@@ -13,6 +15,7 @@ def login_fun(request):
         if l1 is not None:
             if l1.is_superuser: # for checking superuser or not
                 request.session['Uname'] = user_name
+                login(request, l1)
                 return redirect('home')
         else:      
             messages.error(request, 'Please Check Your Username or Password')
@@ -38,10 +41,15 @@ def register_fun(request):
         return render(request, 'register.html')
     
 
+
+@login_required
+@never_cache
 def home_fun(request):
     return render(request, 'home.html', {'Name': request.session['Uname']})
 
 
+@login_required
+@never_cache
 def addcourse_fun(request):
     if request.method == 'POST': # this block for button
         c1 = Course()
@@ -55,11 +63,15 @@ def addcourse_fun(request):
         return render(request, 'addcourse.html')
 
 
+@login_required
+@never_cache
 def displaycourse_fun(request):
     course_data = Course.objects.all()
     return render(request, 'displaycourse.html', {'coursedata': course_data})
 
 
+@login_required
+@never_cache
 def update_fun(request, id):
     c1 = Course.objects.get(id=id)
     if request.method == 'POST': # block for button
@@ -73,12 +85,16 @@ def update_fun(request, id):
         return render(request, 'updatecourse.html', {'data': c1})
     
 
+@login_required
+@never_cache
 def deletecourse_fun(request, id):
     c1 = Course.objects.get(id=id)
     c1.delete()
     return redirect('displaycourse')
 
 
+@login_required
+@never_cache
 def addstudent_fun(request):
     if request.method == 'POST':
         s1 = Student()
@@ -99,11 +115,15 @@ def addstudent_fun(request):
         return render(request, 'addstudent.html', {'CityData': city, 'CourseData': course})
     
 
+@login_required
+@never_cache
 def displaystudent_fun(request):
     stud_data = Student.objects.all()
     return render(request, 'displaystudent.html', {'StudentData': stud_data})
 
 
+@login_required
+@never_cache
 def updatestudent_fun(request, id):
     s1 = Student.objects.get(id=id)
     if request.method == 'POST':
@@ -127,7 +147,14 @@ def updatestudent_fun(request, id):
         return render(request, 'updatestudent.html', {'Student': s1,'CityData': city, 'CourseData': course})
     
 
+@login_required
+@never_cache
 def deletestudent_fun(request, id):
     s1 = Student.objects.get(id=id)
     s1.delete()
     return redirect('displaystudent')
+
+
+def logout_fun(request):
+    logout(request)
+    return redirect('logout')

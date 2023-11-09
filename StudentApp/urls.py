@@ -14,4 +14,5 @@ urlpatterns = [
     path('displaystudent', views.displaystudent_fun, name='displaystudent'), 
     path('update_student/<int:id>', views.updatestudent_fun, name='update_student'),
     path('delete_student/<int:id>', views.deletestudent_fun, name='delete_student'),
+    path('logout', views.logout_fun, name='logout'),
 ]
