@@ -157,4 +157,4 @@ def deletestudent_fun(request, id):
 
 def logout_fun(request):
     logout(request)
-    return redirect('logout')
+    return redirect('login')
