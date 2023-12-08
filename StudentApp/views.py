@@ -32,11 +32,14 @@ def register_fun(request):
         if User.objects.filter(username = user_name).exists():
             messages.error(request, 'Username already taken use different username')
             return redirect('reg')
+        elif User.objects.filter(email = user_email).exists():
+            messages.error(request, 'Email already used, please use another email')    
+            return redirect('reg')
         else:
             r1 = User.objects.create_superuser(username = user_name, password = user_password, email = user_email)
             r1.save() 
             messages.success(request, 'Account Created Successfully')       
-            return redirect('reg')
+            return redirect('login')
     else: # this block for hyperlink
         return render(request, 'register.html')
     
